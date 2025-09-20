@@ -20,12 +20,12 @@ class HelloControllerTimeTests {
 
     @Test
     fun `should return greeting with name`() {
-        val view = controller.welcome(model, "Alice")
+        val view = controller.welcome(model, "Daniel")
 
         assertThat(view).isEqualTo("welcome")
         val message = model.getAttribute("message") as String
         assertThat(message).contains("Good")
-        assertThat(message).contains("Alice")
+        assertThat(message).contains("Daniel")
     }
 
     @Test
@@ -36,6 +36,6 @@ class HelloControllerTimeTests {
         val message = model.getAttribute("message") as String
         assertThat(message).contains("Good")
         // no debe contener un nombre
-        assertThat(message).doesNotContain("Alice")
+        assertThat(message).doesNotContain("Daniel")
     }
 }

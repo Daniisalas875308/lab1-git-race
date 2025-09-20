@@ -28,29 +28,29 @@ class HelloControllerTimeZoneTests {
     @Test
     fun `should return Good Morning`() {
         controller = createControllerAt(6)
-        val view = controller.welcome(model, "Alice")
-        assertThat(model.getAttribute("message")).isEqualTo("Good Morning, Alice!")
+        val view = controller.welcome(model, "Daniel")
+        assertThat(model.getAttribute("message")).isEqualTo("Good Morning, Daniel!")
     }
 
     @Test
     fun `should return Good Afternoon`() {
         controller = createControllerAt(13)
-        val view = controller.welcome(model, "Bob")
-        assertThat(model.getAttribute("message")).isEqualTo("Good Afternoon, Bob!")
+        val view = controller.welcome(model, "Daniel")
+        assertThat(model.getAttribute("message")).isEqualTo("Good Afternoon, Daniel!")
     }
 
     @Test
     fun `should return Good Evening`() {
         controller = createControllerAt(19)
-        val view = controller.welcome(model, "Charlie")
-        assertThat(model.getAttribute("message")).isEqualTo("Good Evening, Charlie!")
+        val view = controller.welcome(model, "Daniel")
+        assertThat(model.getAttribute("message")).isEqualTo("Good Evening, Daniel!")
     }
 
     @Test
     fun `should return Good Night`() {
         controller = createControllerAt(23)
-        val view = controller.welcome(model, "Dana")
-        assertThat(model.getAttribute("message")).isEqualTo("Good Night, Dana!")
+        val view = controller.welcome(model, "Daniel")
+        assertThat(model.getAttribute("message")).isEqualTo("Good Night, Daniel!")
     }
 
     @Test

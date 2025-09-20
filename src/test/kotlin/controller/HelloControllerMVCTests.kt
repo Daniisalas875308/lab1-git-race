@@ -23,7 +23,6 @@ class HelloControllerMVCTests {
 
     @Test
     fun `should return home page with default message`() {
-        val validGreetings = listOf("Good Morning", "Good Afternoon", "Good Evening", "Good Night")
 
         mockMvc.perform(get("/"))
             .andDo(print())

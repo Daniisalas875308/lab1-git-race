@@ -15,12 +15,12 @@ class HelloApiControllerTimeTests {
 
     @Test
     fun `should return greeting with name`() {
-        val response = controller.helloApi("Bob")
+        val response = controller.helloApi("Daniel")
 
         assertThat(response["message"]).isInstanceOf(String::class.java)
         val message = response["message"] as String
         assertThat(message).contains("Good")
-        assertThat(message).contains("Bob")
+        assertThat(message).contains("Daniel")
         assertThat(response).containsKey("timestamp")
     }
 
@@ -30,7 +30,7 @@ class HelloApiControllerTimeTests {
 
         val message = response["message"] as String
         assertThat(message).contains("Good")
-        assertThat(message).doesNotContain("Bob")
+        assertThat(message).doesNotContain("Daniel")
         assertThat(response).containsKey("timestamp")
     }
 }

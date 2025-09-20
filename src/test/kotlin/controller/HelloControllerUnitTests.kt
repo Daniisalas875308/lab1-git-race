@@ -15,7 +15,7 @@ class HelloControllerUnitTests {
     
     @BeforeEach
     fun setup() {
-        val fixedClock = Clock.fixed(Instant.parse("2025-09-20T08:30:00Z"), ZoneId.of("UTC")) // 08:30 => Good Morning
+        val fixedClock = Clock.fixed(Instant.parse("2025-09-20T08:30:00Z"), ZoneId.of("UTC")) // Definimos horario a las 8:30
         controller = HelloController("Test Message", fixedClock)
         model = ExtendedModelMap()
     }
