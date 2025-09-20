@@ -18,13 +18,16 @@ class IntegrationTest {
     @Autowired
     private lateinit var restTemplate: TestRestTemplate
 
+    private val validGreetings = listOf("Good Morning", "Good Afternoon", "Good Evening", "Good Night")
+
+
     @Test
     fun `should return home page with modern title and client-side HTTP debug`() {
         val response = restTemplate.getForEntity("http://localhost:$port", String::class.java)
         
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(response.body).contains("<title>Modern Web App</title>")
-        assertThat(response.body).contains("Welcome to Modern Web App")
+        assertThat(validGreetings.any { response.body!!.contains("$it World!") }).isTrue()
         assertThat(response.body).contains("Interactive HTTP Testing & Debug")
         assertThat(response.body).contains("Client-Side Educational Tool")
     }
@@ -34,7 +37,7 @@ class IntegrationTest {
         val response = restTemplate.getForEntity("http://localhost:$port?name=Developer", String::class.java)
         
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(response.body).contains("Hello, Developer!")
+        assertThat(validGreetings.any { response.body!!.contains("$it, Developer!") }).isTrue()
     }
 
     @Test
@@ -43,7 +46,7 @@ class IntegrationTest {
         
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
         assertThat(response.headers.contentType).isEqualTo(MediaType.APPLICATION_JSON)
-        assertThat(response.body).contains("Hello, Test!")
+        assertThat(validGreetings.any { response.body!!.contains("$it, Test!") }).isTrue()
         assertThat(response.body).contains("timestamp")
     }
 

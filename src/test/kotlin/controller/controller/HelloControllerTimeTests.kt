@@ -5,9 +5,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.ui.Model
 import org.springframework.ui.ExtendedModelMap
-import java.time.Clock
-import java.time.Instant
-import java.time.ZoneId
 
 class HelloControllerUnitTests {
     private lateinit var controller: HelloController
@@ -15,8 +12,7 @@ class HelloControllerUnitTests {
     
     @BeforeEach
     fun setup() {
-        val fixedClock = Clock.fixed(Instant.parse("2025-09-20T08:30:00Z"), ZoneId.of("UTC")) // 08:30 => Good Morning
-        controller = HelloController("Test Message", fixedClock)
+        controller = HelloController("Test Message")
         model = ExtendedModelMap()
     }
     
@@ -25,7 +21,7 @@ class HelloControllerUnitTests {
         val view = controller.welcome(model, "")
         
         assertThat(view).isEqualTo("welcome")
-        assertThat(model.getAttribute("message")).isEqualTo("Good Morning Test Message!")
+        assertThat(model.getAttribute("message")).isEqualTo("Test Message")
         assertThat(model.getAttribute("name")).isEqualTo("")
     }
     
@@ -34,18 +30,18 @@ class HelloControllerUnitTests {
         val view = controller.welcome(model, "Developer")
         
         assertThat(view).isEqualTo("welcome")
-        assertThat(model.getAttribute("message")).isEqualTo("Good Morning, Developer!")
+        assertThat(model.getAttribute("message")).isEqualTo("Hello, Developer!")
         assertThat(model.getAttribute("name")).isEqualTo("Developer")
     }
     
     @Test
     fun `should return API response with timestamp`() {
-        val apiController = HelloApiController(Clock.fixed(Instant.parse("2025-09-20T08:30:00Z"), ZoneId.of("UTC")))
+        val apiController = HelloApiController()
         val response = apiController.helloApi("Test")
         
         assertThat(response).containsKey("message")
         assertThat(response).containsKey("timestamp")
-        assertThat(response["message"]).isEqualTo("Good Morning, Test!")
+        assertThat(response["message"]).isEqualTo("Hello, Test!")
         assertThat(response["timestamp"]).isNotNull()
     }
 
