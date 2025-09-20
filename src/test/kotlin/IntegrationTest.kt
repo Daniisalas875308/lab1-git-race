@@ -76,4 +76,15 @@ class IntegrationTest {
         assertThat(response.body).contains("Health Check")
         assertThat(response.body).contains("Learning Notes:")
     }
+
+    @Test
+    fun `API should return greeting with name and timestamp`() {
+        val response = restTemplate.getForEntity("http://localhost:$port/api/hello?name=Integration", String::class.java)
+
+        assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
+        assertThat(response.headers.contentType).isEqualTo(MediaType.APPLICATION_JSON)
+        assertThat(response.body).contains("Integration")
+        assertThat(response.body).contains("timestamp")
+    }
+
 }

@@ -44,4 +44,14 @@ class HelloControllerUnitTests {
         assertThat(response["message"]).isEqualTo("Hello, Test!")
         assertThat(response["timestamp"]).isNotNull()
     }
+
+    @Test
+    fun `should return morning greeting`() {
+        val apiController = HelloApiController()
+        val response = apiController.helloApi("Alice")
+        assertThat(response["message"]).contains("Alice") // el nombre debe aparecer
+        // no validamos Good Morning exacto porque depende de la hora del sistema,
+        // pero sí que existe el nombre
+    }
+
 }

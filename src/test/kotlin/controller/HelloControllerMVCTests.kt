@@ -48,5 +48,15 @@ class HelloControllerMVCTests {
             .andExpect(jsonPath("$.message", equalTo("Hello, Test!")))
             .andExpect(jsonPath("$.timestamp").exists())
     }
+
+    @Test
+    fun `API should return time-based greeting`() {
+        mockMvc.perform(get("/api/hello").param("name", "Tester"))
+            .andDo(print())
+            .andExpect(status().isOk)
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.message", containsString("Tester")))
+    }
+
 }
 
